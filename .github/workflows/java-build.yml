@@ -67,6 +67,9 @@ jobs:
           name: custom-app-artifact-v${{ github.run_number }}
           path: target/
 
+      - name: Update Version
+        run: mvn versions:set -DnewVersion=1.0.${{ github.run_number }}-SNAPSHOT
+
       - name: Deploy jar to GitHub Packages
         run: mvn deploy -DskipTests
         env:
